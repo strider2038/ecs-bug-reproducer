@@ -1,0 +1,16 @@
+{
+    "name": "strider2038/ecs-bug-reproducer",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+        "symplify/easy-coding-standard": "8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Istock\\": "src/"
+        }
+    }
+}

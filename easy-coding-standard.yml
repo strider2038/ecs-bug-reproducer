@@ -1,0 +1,40 @@
+imports:
+  - { resource: './vendor/symplify/easy-coding-standard/config/set/clean-code.yaml' }
+  - { resource: './vendor/symplify/easy-coding-standard/config/set/common.yaml' }
+  - { resource: './vendor/symplify/easy-coding-standard/config/set/dead-code.yaml' }
+  - { resource: './vendor/symplify/easy-coding-standard/config/set/symfony.yaml' }
+  - { resource: './vendor/symplify/easy-coding-standard/config/set/symfony-risky.yaml' }
+  - { resource: './vendor/symplify/easy-coding-standard/config/set/psr12.yaml' }
+  - { resource: './vendor/symplify/easy-coding-standard/config/set/php71.yaml' }
+
+services:
+  PhpCsFixer\Fixer\PhpUnit\PhpUnitTestAnnotationFixer:
+    style: 'annotation'
+  PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer:
+    align_double_arrow: true
+    align_equals: true
+  PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
+    spacing: 'none'
+
+parameters:
+  skip:
+    # persistently ignored
+    PhpCsFixer\Fixer\PhpUnit\PhpUnitMethodCasingFixer: ~
+    SlevomatCodingStandard\Sniffs\Commenting\DisallowCommentAfterCodeSniff: ~
+
+    # conflicting checkers
+    PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer: ~
+    PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\MultiLineFunctionDeclarationSniff.CloseBracketLine: ~
+    PHP_CodeSniffer\Standards\PSR2\Sniffs\ControlStructures\ControlStructureSpacingSniff.SpacingAfterOpenBrace: ~
+
+    # disabled due to possible bugs with Phake library
+    SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff: ~
+
+    # temporary ignored
+    PhpCsFixer\Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer: ~ # ignored until migrating to Symfony Serializer v5.1
+    PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer: ~
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff: ~
+    SlevomatCodingStandard\Sniffs\Whitespaces\DuplicateSpacesSniff: ~
+
+    # short annotation ignored
+    PhpCsFixer\Fixer\Phpdoc\PhpdocLineSpanFixer: ~
